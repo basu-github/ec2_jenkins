@@ -29,6 +29,12 @@ pipeline {
                 sleep time: 2, unit: 'MINUTES'
             }
         }
+      stage('post Email') {
+            steps {
+            emailext body: '', subject: 'ec2_build job', to: 'basudeb.tripathy@gmail.com'
+            }
+        }
+
         stage('terraform destroy') {
             steps {
                 sh "terraform destroy --auto-approve"
