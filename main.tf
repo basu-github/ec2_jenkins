@@ -22,12 +22,12 @@ data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
 
-output "default_subnets"{
- value = data.aws_subnet_ids.default
+output "default_subnets" {
+  value = data.aws_subnet_ids.default
 }
- 
+
 output "defaulut_vpc" {
-value = data.aws_vpc.default.id
+  value = data.aws_vpc.default.id
 }
 
 resource "aws_security_group" "sg_ssh" {
@@ -40,10 +40,10 @@ resource "aws_security_group" "sg_ssh" {
     protocol    = "tcp"
   }
   egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
 
@@ -62,7 +62,7 @@ resource "aws_instance" "ec2-1" {
   instance_type = "t2.micro"
   #subnet_id = data.aws_subnet_ids.default.ids[0]
   vpc_security_group_ids = [aws_security_group.sg_ssh.id]
-  user_data = file("httpd.json")
+  user_data              = file("httpd.json")
   tags = {
     Name = "ec2-tf"
   }
@@ -70,6 +70,6 @@ resource "aws_instance" "ec2-1" {
 
 
 output "public_url" {
- value = aws_instance.ec2-1.public_dns
+  value = aws_instance.ec2-1.public_dns
 
 }

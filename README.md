@@ -1,3 +1,5 @@
 # ec2_jenkins
 
-Creating single EC2 instances through using jenkins pipeline
+1. Creating single EC2 instances through using jenkins pipeline
+2. creating a new VPC
+
